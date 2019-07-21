@@ -8,7 +8,7 @@ import net.minecraft.util.registry.Registry;
 import szewek.fabricflux.items.BatteryItem;
 
 public class FabricFlux implements ModInitializer {
-	public static final Item ITEM_BATTERY = new BatteryItem(new Item.Settings().maxCount(1).maxDamage(50000).group(ItemGroup.MISC));
+	public static final Item ITEM_BATTERY = new BatteryItem(new Item.Settings().maxCount(1).group(ItemGroup.MISC));
 
 	@Override
 	public void onInitialize() {

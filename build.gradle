@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '0.2.3-SNAPSHOT'
 	id 'maven-publish'
+	id 'com.matthewprenger.cursegradle' version '1.3.0'
 }
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -74,5 +75,28 @@ publishing {
 	repositories {
 		// uncomment to publish to the local maven
 		// mavenLocal()
+	}
+}
+
+curseforge {
+	String cfkey = System.getenv("CURSEFORGE_KEY")
+	apiKey = cfkey ? cfkey : ""
+	project {
+		id = "331552"
+		releaseType = "release"
+		changelogType = "markdown"
+		changelog = file("LATEST.md")
+		addGameVersion project.minecraft_version
+		relations {
+			requiredLibrary 'fabric'
+		}
+		afterEvaluate {
+			mainArtifact(remapJar.output)
+			uploadTask.dependsOn(remapJar)
+		}
+		addArtifact sourcesJar
+	}
+	options {
+		forgeGradleIntegration = false
 	}
 }
