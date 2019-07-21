@@ -15,6 +15,7 @@ import szewek.fabricflux.api.IFluxContainer;
 import java.util.List;
 
 public class BatteryItem extends Item implements IFluxContainer {
+	private static final String FLUX = "Flux";
 
 	public BatteryItem(Settings settings) {
 		super(settings);
@@ -25,7 +26,7 @@ public class BatteryItem extends Item implements IFluxContainer {
 		int e = 0;
 		CompoundTag tag = itemStack.getTag();
 		if (tag != null) {
-			e = tag.getInt("e");
+			e = tag.getInt(FLUX);
 		}
 		list.add(new TranslatableText("item.fabricflux.battery.charge", e, 50000));
 	}
@@ -47,7 +48,7 @@ public class BatteryItem extends Item implements IFluxContainer {
 
 		@Override
 		public int getFluxAmount() {
-			return tag.getInt("e");
+			return tag.getInt(FLUX);
 		}
 
 		@Override
@@ -57,25 +58,25 @@ public class BatteryItem extends Item implements IFluxContainer {
 
 		@Override
 		public int extractFlux(int n, boolean sim) {
-			int energy = tag.getInt("e");
+			int energy = tag.getInt(FLUX);
 			if (n > 0) {
 				if (n > energy)
 					n = energy;
 				if (!sim)
-					tag.putInt("e", energy - n);
+					tag.putInt(FLUX, energy - n);
 			}
 			return n;
 		}
 
 		@Override
 		public int receiveFlux(int n, boolean sim) {
-			int energy = tag.getInt("e");
+			int energy = tag.getInt(FLUX);
 			if (n > 0) {
 				final int r = 50000 - energy;
 				if (n > r)
 					n = r;
 				if (!sim)
-					tag.putInt("e", energy + n);
+					tag.putInt(FLUX, energy + n);
 			}
 			return n;
 		}

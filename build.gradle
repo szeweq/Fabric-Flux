@@ -88,13 +88,15 @@ curseforge {
 		changelog = file("LATEST.md")
 		addGameVersion project.minecraft_version
 		relations {
-			requiredLibrary 'fabric'
+			requiredLibrary 'fabric-api'
 		}
 		afterEvaluate {
-			mainArtifact(remapJar.output)
+			mainArtifact(jar.output)
 			uploadTask.dependsOn(remapJar)
 		}
+		addArtifact remapJar
 		addArtifact sourcesJar
+		addArtifact remapSourcesJar
 	}
 	options {
 		forgeGradleIntegration = false
