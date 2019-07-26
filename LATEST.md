@@ -1,1 +1,1 @@
-First version
+[BREAKING CHANGE] Make `getFluxFor` method not generic, accepting any object instead.

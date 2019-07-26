@@ -32,7 +32,7 @@ public class BatteryItem extends Item implements IFluxContainer {
 	}
 
 	@Override
-	public <T> IFlux getFluxFor(T that) {
+	public IFlux getFluxFor(Object that) {
 		if (that instanceof ItemStack) {
 			return new Flux(((ItemStack) that).getOrCreateTag());
 		}
