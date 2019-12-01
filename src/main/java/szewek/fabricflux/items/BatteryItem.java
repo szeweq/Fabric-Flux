@@ -28,7 +28,7 @@ public class BatteryItem extends Item implements IFluxContainer {
 		if (tag != null) {
 			e = tag.getInt(FLUX);
 		}
-		list.add(new TranslatableText("item.fabricflux.battery.charge", e, 50000));
+		list.add(new TranslatableText("item.fabricflux.battery.charge", e, 100000));
 	}
 
 	@Override

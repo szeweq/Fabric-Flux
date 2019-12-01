@@ -1,1 +1,2 @@
 - Changed Battery capacity from 50000 to 100000
+- Added Fabric-Flux Item Group
