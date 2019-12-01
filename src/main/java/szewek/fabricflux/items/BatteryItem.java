@@ -53,7 +53,7 @@ public class BatteryItem extends Item implements IFluxContainer {
 
 		@Override
 		public int getFluxCapacity() {
-			return 50000;
+			return 100000;
 		}
 
 		@Override

@@ -13,6 +13,5 @@ public class FabricFlux implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		Registry.register(Registry.ITEM, new Identifier("fabricflux", "battery"), ITEM_BATTERY);
-		System.out.println("Fabric-Flux");
 	}
 }

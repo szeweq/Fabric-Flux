@@ -91,7 +91,7 @@ curseforge {
 			requiredLibrary 'fabric-api'
 		}
 		afterEvaluate {
-			mainArtifact(jar.output)
+			mainArtifact(remapJar.output)
 			uploadTask.dependsOn(remapJar)
 		}
 		addArtifact remapJar
