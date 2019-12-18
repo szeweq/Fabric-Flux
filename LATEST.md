@@ -1,2 +1,3 @@
-- Changed Battery capacity from 50000 to 100000
-- Added Fabric-Flux Item Group
+- Set fully charged Flux Battery to Fabric Flux item group
+- Flux Battery is now craftable
+- Flux Battery is usable on entities

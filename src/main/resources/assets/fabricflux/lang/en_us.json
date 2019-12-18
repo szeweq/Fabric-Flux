@@ -1,4 +1,5 @@
 {
   "item.fabricflux.battery": "Battery",
-  "item.fabricflux.battery.charge": "Charge: %d/%d F"
+  "item.fabricflux.battery.charge": "Charge: %d/%d F",
+  "itemGroup.fabricflux.ffitems": "Fabric Flux Items"
 }

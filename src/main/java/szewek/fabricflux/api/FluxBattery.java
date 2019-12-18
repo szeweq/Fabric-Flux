@@ -5,7 +5,7 @@ public class FluxBattery implements IFlux {
 	protected final int maxEnergy;
 
 	public FluxBattery() {
-		this(50000);
+		this(100000);
 	}
 
 	public FluxBattery(int max) {

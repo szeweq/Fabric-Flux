@@ -79,8 +79,7 @@ publishing {
 }
 
 curseforge {
-	String cfkey = System.getenv("CFKEY")
-	apiKey = cfkey ? cfkey : ""
+	apiKey = project.hasProperty("cfKey") ? project.cfKey : ""
 	project {
 		id = "331552"
 		releaseType = "release"
@@ -88,16 +87,17 @@ curseforge {
 		changelog = file("LATEST.md")
 		addGameVersion project.minecraft_version
 		relations {
-			requiredDependency 'fabric'
+			requiredDependency 'fabric-api'
 		}
-		afterEvaluate {
-			mainArtifact(remapJar)
-			uploadTask.dependsOn(remapJar)
-		}
-		addArtifact remapJar
-		addArtifact remapSourcesJar
+		mainArtifact(remapJar)
+		addArtifact(jar)
+		addArtifact(sourcesJar)
 	}
 	options {
 		forgeGradleIntegration = false
 	}
+}
+
+afterEvaluate {
+	tasks.curseforge331552.dependsOn remapJar
 }
