@@ -1,1 +1,1 @@
-- Flux Container now uses Optional value
+Version bump for 1.15.2
