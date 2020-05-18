@@ -1,5 +1,7 @@
 package szewek.fabricflux.api;
 
+import java.util.Optional;
+
 /**
  * Interface for Flux containers (like items, block entities, etc.)
  */
@@ -10,5 +12,5 @@ public interface IFluxContainer {
 	 *              or {@link net.minecraft.util.math.Direction Direction} for block entities)
 	 * @return Flux interface (this should be not stored outside the container)
 	 */
-	IFlux getFluxFor(Object that);
+	Optional<IFlux> getFluxFor(Object that);
 }

@@ -19,6 +19,7 @@ import szewek.fabricflux.api.IFlux;
 import szewek.fabricflux.api.IFluxContainer;
 
 import java.util.List;
+import java.util.Optional;
 
 public class BatteryItem extends Item implements IFluxContainer {
 	public static final String FLUX = "Flux";
@@ -42,8 +43,6 @@ public class BatteryItem extends Item implements IFluxContainer {
 	public boolean useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
 		Flux f = new Flux(stack.getOrCreateTag());
 		if (f.getFluxAmount() >= 50) {
-			System.out.println("Extracted " + f.extractFlux(250, false));
-			System.out.println("Energy " + f.getFluxAmount());
 			Vec3d pos = entity.getPos();
 			entity.onStruckByLightning(new LightningEntity(entity.world, pos.x, pos.y, pos.z, true));
 			return true;
@@ -57,11 +56,11 @@ public class BatteryItem extends Item implements IFluxContainer {
 	}
 
 	@Override
-	public IFlux getFluxFor(Object that) {
+	public Optional<IFlux> getFluxFor(Object that) {
 		if (that instanceof ItemStack) {
-			return new Flux(((ItemStack) that).getOrCreateTag());
+			return Optional.of(new Flux(((ItemStack) that).getOrCreateTag()));
 		}
-		return null;
+		return Optional.empty();
 	}
 
 	static class Flux implements IFlux {

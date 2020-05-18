@@ -1,3 +1,1 @@
-- Set fully charged Flux Battery to Fabric Flux item group
-- Flux Battery is now craftable
-- Flux Battery is usable on entities
+- Flux Container now uses Optional value

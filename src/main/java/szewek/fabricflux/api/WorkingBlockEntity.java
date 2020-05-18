@@ -5,6 +5,8 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Tickable;
 
+import java.util.Optional;
+
 /**
  * Block entity working cycle template for energy-based machines
  */
@@ -108,8 +110,8 @@ public abstract class WorkingBlockEntity extends BlockEntity implements Tickable
 	}
 
 	@Override
-	public IFlux getFluxFor(Object that) {
-		return flux;
+	public Optional<IFlux> getFluxFor(Object that) {
+		return Optional.of(flux);
 	}
 
 	public static final class Flux implements IFlux {
