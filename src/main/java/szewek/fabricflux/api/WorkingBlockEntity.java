@@ -1,5 +1,6 @@
 package szewek.fabricflux.api;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.nbt.CompoundTag;
@@ -22,8 +23,8 @@ public abstract class WorkingBlockEntity extends BlockEntity implements Tickable
 	}
 
 	@Override
-	public void fromTag(CompoundTag compoundTag) {
-		super.fromTag(compoundTag);
+	public void fromTag(BlockState bs, CompoundTag compoundTag) {
+		super.fromTag(bs, compoundTag);
 		this.flux.amount = compoundTag.getInt("Flux");
 	}
 

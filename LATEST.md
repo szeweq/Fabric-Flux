@@ -1,1 +1,2 @@
-Version bump for 1.15.2
+- Version for 1.16.5
+- Battery now discharges while using on entities

@@ -3,15 +3,17 @@ package szewek.fabricflux.items;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -40,12 +42,17 @@ public class BatteryItem extends Item implements IFluxContainer {
 	}
 
 	@Override
-	public boolean useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
 		Flux f = new Flux(stack.getOrCreateTag());
 		if (f.getFluxAmount() >= 50) {
-			Vec3d pos = entity.getPos();
-			entity.onStruckByLightning(new LightningEntity(entity.world, pos.x, pos.y, pos.z, true));
-			return true;
+			if (!entity.world.isClient) {
+				Vec3d pos = entity.getPos();
+				LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, entity.world);
+				lightning.setPos(pos.x, pos.y, pos.z);
+				entity.onStruckByLightning((ServerWorld) entity.world, lightning);
+				if (!user.isCreative()) f.extractFlux(50, false);
+			}
+			return ActionResult.SUCCESS;
 		}
 		return super.useOnEntity(stack, user, entity, hand);
 	}
